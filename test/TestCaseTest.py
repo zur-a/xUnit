@@ -4,12 +4,13 @@ from src.WasRun import WasRun
 
 class TestCaseTest(TestCase):
 
-    def setUp(self):
-        self.test = WasRun("testMethod")
+    #def setUp(self):
+        #self.test = WasRun("testMethod")
 
     def templateMethodTest(self):
-        self.test.run()
-        assert ("setUp testMethod " == self.test.log)
+        test = WasRun("testMethod")
+        test.run()
+        assert ("setUp testMethod " == test.log)
 
 
 TestCaseTest("templateMethodTest").run()
