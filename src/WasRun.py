@@ -1,4 +1,4 @@
-from TestCase import TestCase
+from src.TestCase import TestCase
 
 
 class WasRun(TestCase):
@@ -9,4 +9,7 @@ class WasRun(TestCase):
 
     def testMethod(self):
         self.wasRun = 1
+
+    def setUp(self):
+        self.wasSetUp = 1
 
