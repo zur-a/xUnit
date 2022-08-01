@@ -1,5 +1,6 @@
 from src.TestResult import TestResult
 
+
 class TestCase:
 
     def __init__(self, name):
