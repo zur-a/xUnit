@@ -1,5 +1,6 @@
 from src.TestCase import TestCase
 from src.WasRun import WasRun
+from src.TestResult import TestResult
 
 
 class TestCaseTest(TestCase):
