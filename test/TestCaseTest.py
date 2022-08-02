@@ -1,6 +1,7 @@
 from src.TestCase import TestCase
 from src.WasRun import WasRun
 from src.TestResult import TestResult
+from src.TestSuite import TestSuite
 
 
 class TestCaseTest(TestCase):
@@ -21,17 +22,28 @@ class TestCaseTest(TestCase):
     def failedResultTest(self):
         test = WasRun("testMethod")
         result = test.run()
-        assert("1 run, 1 failed", result.summary())
+        result.testFailed()
+        assert("1 run, 1 failed" == result.summary())
 
     def failedResultFormattingTest(self):
         result = TestResult()
         result.testStarted()
         result.testFailed()
-        assert("1 run, 1 failed" == result.summary())
+        result.testFailed()
+        result.testFailed()
+        assert("1 run, 3 failed" == result.summary())
+
+    def testSuite(self):
+        suite = TestSuite()
+        suite.add(WasRun("testMethod"))
+        suite.add(WasRun("testBrokenMethod"))
+        result = TestResult()
+        result = suite.run()
+        assert("2 run, 1 failed" == result.summary)
 
 
-TestCaseTest("templateMethodTest").run()
-TestCaseTest("resultTest").run()
-TestCaseTest("failedResultTest").run()
-TestCaseTest("failedResultFormattingTest").run()
+print(TestCaseTest("templateMethodTest").run().summary())
+print(TestCaseTest("resultTest").run().summary())
+print(TestCaseTest("failedResultTest").run().summary())
+print(TestCaseTest("failedResultFormattingTest").run().summary())
 
