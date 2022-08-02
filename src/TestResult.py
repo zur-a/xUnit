@@ -11,4 +11,4 @@ class TestResult:
         self.errorCount = self.errorCount + 1
 
     def summary(self):
-        return "%d run, 0 failed" %self.runCount
+        return "%d run, %d failed" % (self.runCount, self.errorCount)
