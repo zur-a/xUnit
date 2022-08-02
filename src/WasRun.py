@@ -19,3 +19,4 @@ class WasRun(TestCase):
     def testBrokesMethod(self):
         raise Exception
 
+

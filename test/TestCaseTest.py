@@ -23,8 +23,15 @@ class TestCaseTest(TestCase):
         result = test.run()
         assert("1 run, 1 failed", result.summary())
 
+    def failedResultFormattingTest(self):
+        result = TestResult()
+        result.testStarted()
+        result.testFailed()
+        assert("1 run, 1 failed" == result.summary())
+
 
 TestCaseTest("templateMethodTest").run()
 TestCaseTest("resultTest").run()
 TestCaseTest("failedResultTest").run()
+TestCaseTest("failedResultFormattingTest").run()
 
