@@ -8,21 +8,19 @@ class TestCaseTest(TestCase):
 
     def setUp(self):
         self.result = TestResult()
+        self.test = WasRun("testMethod")
 
     def templateMethodTest(self):
-        test = WasRun("testMethod")
-        test.run(self.result)
-        assert ("setUp testMethod tearDown " == test.log)
+        self.test.run(self.result)
+        assert ("setUp testMethod tearDown " == self.test.log)
 
     def resultTest(self):
-        test = WasRun("testMethod")
-        test.run(self.result)
+        self.test.run(self.result)
         assert("1 run, 0 failed" == self.result.summary())
 
     def failedResultTest(self):
-        test = WasRun("testMethod")
         self.result.testFailed()
-        test.run(self.result)
+        self.test.run(self.result)
         assert("1 run, 1 failed" == self.result.summary())
 
     def failedResultFormattingTest(self):
