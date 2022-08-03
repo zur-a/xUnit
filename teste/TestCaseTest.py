@@ -6,36 +6,37 @@ from src.TestSuite import TestSuite
 
 class TestCaseTest(TestCase):
 
+    def setUp(self):
+        self.result = TestResult()
+
     def templateMethodTest(self):
         test = WasRun("testMethod")
-        test.run()
+        test.run(self.result)
         assert ("setUp testMethod tearDown " == test.log)
 
     def resultTest(self):
         test = WasRun("testMethod")
-        result = test.run()
-        assert("1 run, 0 failed" == result.summary())
+        test.run(self.result)
+        assert("1 run, 0 failed" == self.result.summary())
 
     def failedResultTest(self):
         test = WasRun("testMethod")
-        result = test.run()
-        result.testFailed()
-        assert("1 run, 1 failed" == result.summary())
+        self.result.testFailed()
+        test.run(self.result)
+        assert("1 run, 1 failed" == self.result.summary())
 
     def failedResultFormattingTest(self):
-        result = TestResult()
-        result.testStarted()
-        result.testFailed()
-        result.testFailed()
-        result.testFailed()
-        assert("1 run, 3 failed" == result.summary())
+        self.result.testStarted()
+        self.result.testFailed()
+        self.result.testFailed()
+        self.result.testFailed()
+        assert("1 run, 3 failed" == self.result.summary())
 
     def suiteTest(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
-        result = TestResult()
-        suite.run(result)
-        assert("2 run, 1 failed" == result.summary)
+        suite.run(self.result)
+        assert("2 run, 1 failed" == self.result.summary())
 
 
