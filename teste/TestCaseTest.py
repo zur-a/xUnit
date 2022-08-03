@@ -6,9 +6,6 @@ from src.TestSuite import TestSuite
 
 class TestCaseTest(TestCase):
 
-    #def setUp(self):
-        #self.test = WasRun("testMethod")
-
     def templateMethodTest(self):
         test = WasRun("testMethod")
         test.run()
@@ -33,17 +30,12 @@ class TestCaseTest(TestCase):
         result.testFailed()
         assert("1 run, 3 failed" == result.summary())
 
-    def testSuite(self):
+    def suiteTest(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
         result = TestResult()
-        result = suite.run()
+        suite.run(result)
         assert("2 run, 1 failed" == result.summary)
 
-
-print(TestCaseTest("templateMethodTest").run().summary())
-print(TestCaseTest("resultTest").run().summary())
-print(TestCaseTest("failedResultTest").run().summary())
-print(TestCaseTest("failedResultFormattingTest").run().summary())
 

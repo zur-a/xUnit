@@ -1,7 +1,17 @@
-from src.WasRun import WasRun
+from src.TestSuite import TestSuite
+from src.TestResult import TestResult
+from teste.TestCaseTest import TestCaseTest
 
-test = WasRun("testMethod")
-print(test.wasRun)
+suite = TestSuite()
+suite.add(TestCaseTest("templateMethodTest"))
+suite.add(TestCaseTest("resultTest"))
+suite.add(TestCaseTest("failedResultTest"))
+suite.add(TestCaseTest("failedResultFormattingTest"))
+suite.add(TestCaseTest("suiteTest"))
 
-test.run()
-print(test.wasRun)
+result = TestResult()
+
+suite.run(result)
+print(result.summary())
+
+
